@@ -22,36 +22,43 @@ Known working systems:
 Additionally, some systems use entirely different object structures that may break non SWN systems by default. For this I've enabled rudimentary support for defining the objects involved with constructing descriptions from VTT data. 
 
 #### Settings:
-- Context Mappings - This setting maps your system actor constructs to the internal ones. Don't change the first keys used, only the values they map to. NPCs may be moved to "Subject Type Mappings" for similar functionality to the original branch. 
-Default Value:
+- **Context Mappings** 
+
+**Default Value**:
 ```
 {"character":{"lineage":"species","class":"class","background":"background","appearance":"biography"},"npc":{"appearance":"notes.right.contents"}}
 ```
-Explanation:
-Actor Types that require context consistency between scenes (i.e. characters and npcs so far). In the base system from PepijnMC mapped to "ActorData.details.race" for lineage, SWN by contrast used "ActorData.species". Thus this mapping assumes you are referring to ActorData and accessing an object within. Reverting back to that system should be as simple as updating the setting to:
+**Explanation**:
+This setting maps your system actor constructs to the internal ones. Don't change the first keys used, only the values they map to. NPCs may be moved to "Subject Type Mappings" for similar functionality to the original branch. Actor Types here usually require context consistency between scenes (i.e. characters and npcs so far). In the base system from PepijnMC mapped to "ActorData.details.race" for lineage, SWN by contrast used "ActorData.species". Thus this mapping assumes you are referring to ActorData and accessing an object within. Reverting back to that system should be as simple as updating the setting to:
 ```
 {"character":{"lineage":"details.race","class":"classes",...
 ```
-- Subject Type Mappings
-Default Value:
+
+- **Subject Type Mappings**
+
+**Default Value**:
 ```
 {"mech":"mech","ship":"star ship","vehicle":"vehicle","faction":"faction","group":"group"}
 ```
-Explanation:
+**Explanation**:
 Actor Types that do not require as much consistency. In the base system from PepijnMC, there was only "vehicle", "npc", and "group" as other types of actors to click on. In SWN there are other object names we need to recognize. So the first value must be a key that maps to a system actor object that.
-- Actor Context Templates
-Default Value:
+
+- **Actor Context Templates**
+
+**Default Value**:
 ```
 {"character":" from a ${actorData.class} ${actorData.background} named ${actor.name}","npc":" from a ${actor.name}","ship":" from a ${actor.name} starship","vehicle":" from a ${actor.name} vehicle","mech":" from a ${actor.name} mech","drone":" from a ${actor.name} drone","faction":" from the ${actor.name} faction","group":" from a group of ${actor.name}"}
 ```
-Explanation:
+**Explanation**:
 For item/power descriptions from a given actor type. Fairly straightforward and similar to the original implementation. Except that in the D&D system, classes are an array under actorData.classes.
-- Item Subject Type Mappings
-Default Value:
+
+- **Item Subject Type Mappings**
+
+**Default Value**:
 ```
 {"item":"item","cyberware":"cyberware","armor":"armor","focus":"focus${actorContext}","skill":"skill${actorContext}","power":"power${actorContext}","weapon":"attack${actorContext}","shipWeapon":"attack${actorContext}","shipDefense":"defense systems${actorContext}","shipFitting":"fitting${actorContext}","asset":"asset${actorContext}"}
 ```
-Explanation:
+**Explanation**:
 In contrast to D&D based systems on FoundryVTT, SWN has many different item types that may or maynot need an actor context included in its description. (From Actor Context Templates, actually). 
 
 TODO:
