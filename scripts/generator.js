@@ -177,7 +177,7 @@ export function sendPrompt(settingprompt, prompt, key = game.settings.get('ai-de
     };
 
     var data = {
-        model: "gpt-3.5-turbo",
+        model: "gpt-4",
         messages: [
             {"role": "system", content: settingprompt},
             ...getChats(),
