@@ -122,7 +122,7 @@ export function sendPrompt(settingprompt, prompt, key = game.settings.get('ai-de
             speaker: {
                 alias: `${speaker} (Debug)`
             },
-            content: prompt
+            content: prompt.trim().replaceAll('\n\n', '\n').replaceAll('\n', '<br />')
         };
         if (game.settings.get('ai-description-generator', 'whisper'))
             message['whisper'] = [game.userId];
@@ -168,7 +168,7 @@ export function sendPrompt(settingprompt, prompt, key = game.settings.get('ai-de
                 speaker: {
                     alias: speaker
                 },
-                content: response
+                content: response.trim().replaceAll('\n\n', '\n').replaceAll('\n', '<br />')
             };
             if (game.settings.get('ai-description-generator', 'whisper'))
                 message['whisper'] = [game.userId];
