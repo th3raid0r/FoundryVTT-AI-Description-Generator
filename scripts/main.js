@@ -57,7 +57,7 @@ Hooks.on('getActorSheetHeaderButtons', (sheet, headerButtons) => {
 
 		if (subjectTypeMapping[actorType]) {
 		  headerButtons.unshift({
-			label: 'GPT-3',
+			label: 'ChatGPT',
 			icon: 'fas fa-comment-dots',
 			class: 'gpt-actor-button',
 			onclick: () => {
