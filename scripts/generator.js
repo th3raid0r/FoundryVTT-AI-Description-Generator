@@ -80,13 +80,13 @@ export function constructPrompt(language, system, world, subject, subjectType = 
 
 export function htmlSanitize (string) {
     const paragraphRegex = /<p>|<br \/>/g;
-    const newline = '\n';
+    const newline = ' \n';
     const spaces = /\s+/g;
     const newlinesNspaces = /(\s\n|\n\s)+/g;
     const htmlRegex = /\\?<\/?\w+((\s+\w+(\s*=\s*(?:\w+|"[^"]*"))?)+\s*|\s*)\/?>/g;
     const stringWithNewlines = string.replace(paragraphRegex, newline);
     const cleanSpaces = stringWithNewlines.replace(spaces, ' ');
-    const cleanNewlines = cleanSpaces.replace(newlinesNspaces, '\s\n');
+    const cleanNewlines = cleanSpaces.replace(newlinesNspaces, newline);
     const sanitizedString = cleanNewlines.replace(htmlRegex, '');
 
     return sanitizedString;
@@ -95,8 +95,8 @@ export function htmlSanitize (string) {
 // a function to fetch a filtered array of all chats and structure them to be compatible with the api.
 export function getChats() {
     const limit = game.settings.get("ai-description-generator", "max_chat_history");
-    const htmlRegex = /\\?<\/?\w+((\s+\w+(\s*=\s*(?:\w+|"[^"]*"))?)+\s*|\s*)\/?>/g;
-    const entityRegex = /&[^\s;]+;/g;
+    //const htmlRegex = /\\?<\/?\w+((\s+\w+(\s*=\s*(?:\w+|"[^"]*"))?)+\s*|\s*)\/?>/g;
+    //const entityRegex = /&[^\s;]+;/g;
     const chats = game.messages.contents
         .filter(m => {
             const speaker = m.speaker;
