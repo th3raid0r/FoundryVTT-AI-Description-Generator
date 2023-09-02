@@ -50,7 +50,8 @@ export function addChatCommands(log, data, chatData) {
 			game.settings.get('ai-description-generator', 'world'),
 			subject,
 			'',
-			'in points: name, overview, personality traits, looks, expectations and roleplaying hints'
+			'in points: name, overview, personality traits, looks, expectations and roleplaying hints',
+			false
 		);
 		return false;
 	}

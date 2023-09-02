@@ -8,6 +8,15 @@ export function registerSettings() {
 		default: ''
 	});
 
+	game.settings.register('ai-description-generator', 'model', {
+		name: 'GPT Model',
+		hint: 'The name of the GPT model you wish to use. Default: gpt-3.5-turbo Also Supported: gpt-4',
+		scope: 'world',
+		config: true,
+		type: String,
+		default: 'gpt-3.5-turbo'
+	});
+
 	game.settings.register('ai-description-generator', 'system', {
 		name: 'System',
 		hint: 'The name of the (public) system you are using. Will be used to provide context.',
@@ -200,6 +209,21 @@ export function registerSettings() {
 			},
 			"npc": {
 				"appearance": "notes.right.contents"
+			},
+			"ship": {
+				"appearance": "description"
+			},
+			"vehicle": {
+				"appearance": "description"
+			},
+			"mech": {
+				"appearance": "description"
+			},
+			"drone": {
+				"appearance": "description"
+			},
+			"faction": {
+				"appearance": "factionGoalDesc"
 			}
 		}),
 		requiresReload: true

@@ -35,25 +35,19 @@ export function constructPrompt(language, system, world, subject, subjectType = 
     var prompt = game.settings.get('ai-description-generator', 'prompt');
     var settingprompt = game.settings.get('ai-description-generator', 'settingprompt');
     if (settingprompt === defaultSettingPrompt) {
-        //If the module's language setting is left blank use the core language setting instead.
         if (language == '')
             language = foundryLanguages[game.settings.get('core', 'language')];
-        //Remove the language request from the prompt for English languages.
         if (englishLanguages.includes(language.toLowerCase()))
             settingprompt = settingprompt.replace('Reply in {language}. ', '');
-        //If the system name already includes the word 'system' remove it from the settingprompt.
         if (system.toLowerCase().includes('system'))
             settingprompt = settingprompt.replace(' system ', ' ');
-        //If no world is given remove it from the settingprompt.
         if (world == '')
             settingprompt = settingprompt.replace(' and the {world} setting', '');
     }
 
     if (prompt === defaultPrompt) {
-        //If no subject type is given remove it from the prompt.
         if (subjectType == '')
             prompt = prompt.replace(' {subjectType}', '');
-        //If no description type is given remove it from the prompt.
         if (descriptionType == '')
             prompt = prompt.replace(' {descriptionType}', '');
     }
@@ -86,7 +80,7 @@ export function constructPrompt(language, system, world, subject, subjectType = 
 
 // a function to fetch a filtered array of all chats and structure them to be compatible with the api.
 export function getChats() {
-    const limit = game.settings.get("ai-description-generator", "max_chat_history"); // get the value of "max_chats" setting
+    const limit = game.settings.get("ai-description-generator", "max_chat_history");
     const htmlRegex = /\\?<\/?\w+((\s+\w+(\s*=\s*(?:\w+|"[^"]*"))?)+\s*|\s*)\/?>/g;
     const entityRegex = /&[^\s;]+;/g;
     const chats = game.messages.contents
@@ -177,7 +171,7 @@ export function sendPrompt(settingprompt, prompt, key = game.settings.get('ai-de
     };
 
     var data = {
-        model: "gpt-4",
+        model: game.settings.get('ai-description-generator', 'model'),
         messages: [
             {"role": "system", content: settingprompt},
             ...getChats(),
