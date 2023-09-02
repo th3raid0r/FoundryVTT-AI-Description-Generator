@@ -86,7 +86,7 @@ export function htmlSanitize (string) {
     const htmlRegex = /\\?<\/?\w+((\s+\w+(\s*=\s*(?:\w+|"[^"]*"))?)+\s*|\s*)\/?>/g;
     const stringWithNewlines = string.replace(paragraphRegex, newline);
     const cleanSpaces = stringWithNewlines.replace(spaces, ' ');
-    const cleanNewlines = cleanSpaces.replace(newlinesNspaces, newline);
+    const cleanNewlines = cleanSpaces.replace(newlinesNspaces, '\s\n');
     const sanitizedString = cleanNewlines.replace(htmlRegex, '');
 
     return sanitizedString;
