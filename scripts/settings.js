@@ -224,23 +224,10 @@ export function registerSettings() {
 			},
 			"faction": {
 				"appearance": "factionGoalDesc"
+			},
+			"group": {
+				"appearance": "placeholder"
 			}
-		}),
-		requiresReload: true
-	});
-
-	game.settings.register('ai-description-generator', 'subjectTypeMappings', {
-		name: 'Subject Type Mappings',
-		hint: 'Custom subject type mappings for actor types. Use JSON format.',
-		scope: 'world',
-		config: true,
-		type: String,
-		default: JSON.stringify({
-		  "mech": "mech",
-		  "ship": "star ship",
-		  "vehicle": "vehicle",
-		  "faction": "faction",
-		  "group": "group"
 		}),
 		requiresReload: true
 	});

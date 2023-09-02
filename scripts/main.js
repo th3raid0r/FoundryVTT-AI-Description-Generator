@@ -21,59 +21,35 @@ Hooks.on('getActorSheetHeaderButtons', (sheet, headerButtons) => {
 	const actor = sheet.object;
 	const actorType = actor.type;
 	const actorData = actor.getRollData();
-
-	if (actorType === 'character' || actorType === 'npc') {
-		const contextValues = getContextValues(actorType, actorData);
-		
-		let subject, subjectContext;
-		
-		if (actorType === 'character') {
-		  subject = `${contextValues.lineage} ${contextValues.class} ${contextValues.background} player character`;
-		  subjectContext = `who is/has ${contextValues.appearance}`;
-		} else {
-		  subject = actor.name;
-		  subjectContext = `that is/has ${contextValues.appearance}`;
-		}
+	const contextValues = getContextValues(actorType, actorData);
 	
-		headerButtons.unshift({
-		  label: 'ChatGPT',
-		  icon: 'fas fa-comment-dots',
-		  class: 'gpt-actor-button',
-		  onclick: () => {
-			constructPrompt(
-			  game.settings.get('ai-description-generator', 'language'),
-			  game.settings.get('ai-description-generator', 'system'),
-			  game.settings.get('ai-description-generator', 'world'),
-			  subject,
-			  subjectContext,
-			  'cool short visual',
-			  false
-			);
-		  }
-		});
+	let subject, subjectContext;
+	
+	if (actorType === 'character') {
+		subject = `${contextValues.lineage} ${contextValues.class} ${contextValues.background} player character`;
+		subjectContext = `who is/has ${contextValues.appearance}`;
+	} else {
+		subject = actor.name;
+		subjectContext = `that is/has ${contextValues.appearance}`;
 	}
-	else {
-		const subjectTypeMapping = JSON.parse(game.settings.get('ai-description-generator', 'subjectTypeMappings'));
 
-		if (subjectTypeMapping[actorType]) {
-		  headerButtons.unshift({
-			label: 'ChatGPT',
-			icon: 'fas fa-comment-dots',
-			class: 'gpt-actor-button',
-			onclick: () => {
-			  constructPrompt(
-				game.settings.get('ai-description-generator', 'language'),
-				game.settings.get('ai-description-generator', 'system'),
-				game.settings.get('ai-description-generator', 'world'),
-				actor.name,
-				subjectTypeMapping[actorType],
-				'cool short sensory',
-				false
-			  );
-			}
-		  });
+	headerButtons.unshift({
+		label: 'ChatGPT',
+		icon: 'fas fa-comment-dots',
+		class: 'gpt-actor-button',
+		onclick: () => {
+		constructPrompt(
+			game.settings.get('ai-description-generator', 'language'),
+			game.settings.get('ai-description-generator', 'system'),
+			game.settings.get('ai-description-generator', 'world'),
+			subject,
+			subjectContext,
+			'cool short visual',
+			false
+		);
 		}
-	}
+	});
+	
 });
 
 //Add a new button the the header of the itme sheet. Spells are also considered items.
