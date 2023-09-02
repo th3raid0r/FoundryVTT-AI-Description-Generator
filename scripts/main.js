@@ -43,7 +43,7 @@ Hooks.on('getActorSheetHeaderButtons', (sheet, headerButtons) => {
 			game.settings.get('ai-description-generator', 'system'),
 			game.settings.get('ai-description-generator', 'world'),
 			subject,
-			subjectContext,
+			htmlSanitize(subjectContext),
 			'cool short visual',
 			false
 		);
