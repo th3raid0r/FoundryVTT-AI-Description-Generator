@@ -1,7 +1,7 @@
 import { registerSettings } from './settings.js';
 import { registerAPI } from './api.js';
 import { migrationHandler } from './migration/migration_handler.js';
-import { constructPrompt } from './generator.js';
+import { htmlSanitize, constructPrompt } from './generator.js';
 import { addChatCommands } from './chat_commands.js';
 import { getSubjectWithContext, getContextValues, getActorContext } from './context.js';
 
