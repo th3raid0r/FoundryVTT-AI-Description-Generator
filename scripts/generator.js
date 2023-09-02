@@ -82,7 +82,7 @@ export function htmlSanitize (string) {
     const paragraphRegex = /<p>|<br \/>/g;
     const newline = '\n';
     const spaces = /\s+/g;
-    const newlinesNspaces = /(\s|\n)+/g;
+    const newlinesNspaces = /(\s\n|\n\s)+/g;
     const htmlRegex = /\\?<\/?\w+((\s+\w+(\s*=\s*(?:\w+|"[^"]*"))?)+\s*|\s*)\/?>/g;
     const stringWithNewlines = string.replace(paragraphRegex, newline);
     const cleanSpaces = stringWithNewlines.replace(spaces, ' ');
