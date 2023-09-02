@@ -34,15 +34,6 @@ This setting maps your system actor constructs to the internal ones. Don't chang
 {"character":{"lineage":"details.race","class":"classes",...
 ```
 
-- **Subject Type Mappings**
-
-**Default Value**:
-```
-{"mech":"mech","ship":"star ship","vehicle":"vehicle","faction":"faction","group":"group"}
-```
-**Explanation**:
-Actor Types that do not require as much consistency. In the base system from PepijnMC, there was only "vehicle", "npc", and "group" as other types of actors to click on. In SWN there are other object names we need to recognize. So the first value must be a key that maps to a system actor object that.
-
 - **Actor Context Templates**
 
 **Default Value**:
@@ -62,7 +53,6 @@ For item/power descriptions from a given actor type. Fairly straightforward and 
 In contrast to D&D based systems on FoundryVTT, SWN has many different item types that may or maynot need an actor context included in its description. (From Actor Context Templates, actually). 
 
 TODO:
-Some of these objects can be unified into a singular structure, and doing that would make things simpler to configure.
 Dynamically interpret if any object property is an array, and if it is, stringify it before sending to chatGPT (as in the `dnd-mergeback` branch)
 
 ## Language Support
