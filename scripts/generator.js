@@ -81,10 +81,14 @@ export function constructPrompt(language, system, world, subject, subjectType = 
 export function htmlSanitize (string) {
     const paragraphRegex = /<p>|<br \/>/g;
     const newline = '\n';
+    const spaces = /\s+/g;
+    const newlinesNspaces = /(\s|\n)+/g;
     const htmlRegex = /\\?<\/?\w+((\s+\w+(\s*=\s*(?:\w+|"[^"]*"))?)+\s*|\s*)\/?>/g;
     const stringWithNewlines = string.replace(paragraphRegex, newline);
-    const sanitizedString = stringWithNewlines.replace(htmlRegex, '');
-    
+    const cleanSpaces = stringWithNewlines.replace(spaces, ' ');
+    const cleanNewlines = cleanSpaces.replace(newlinesNspaces, newline);
+    const sanitizedString = cleanNewlines.replace(htmlRegex, '');
+
     return sanitizedString;
 }
 

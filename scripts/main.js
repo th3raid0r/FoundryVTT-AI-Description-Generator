@@ -3,7 +3,7 @@ import { registerAPI } from './api.js';
 import { migrationHandler } from './migration/migration_handler.js';
 import { htmlSanitize, constructPrompt } from './generator.js';
 import { addChatCommands } from './chat_commands.js';
-import { getSubjectWithContext, getContextValues, getActorContext } from './context.js';
+import { getContextValues, getActorContext } from './context.js';
 
 //Register the settings and api function when Foundry is ready.
 Hooks.once('init', () => {
