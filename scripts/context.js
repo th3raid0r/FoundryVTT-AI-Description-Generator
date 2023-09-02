@@ -1,19 +1,7 @@
 export function getContextValues(actorType, actorData) {
-    const defaultMappings = {
-      character: {
-        lineage: 'species',
-        class: 'class',
-        background: 'background',
-        appearance: 'biography'
-      },
-      npc: {
-        appearance: 'notes.right.contents'
-      }
-    };
-  
     const userMappings = JSON.parse(game.settings.get('ai-description-generator', 'contextMappings')) || {};
   
-    const contextKeys = Object.keys(defaultMappings[actorType]);
+    const contextKeys = Object.keys(userMappings[actorType]);
     const contextValues = {};
   
     for (const key of contextKeys) {

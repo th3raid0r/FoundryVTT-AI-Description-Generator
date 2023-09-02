@@ -29,7 +29,7 @@ Hooks.on('getActorSheetHeaderButtons', (sheet, headerButtons) => {
 		subject = `${contextValues.lineage} ${contextValues.class} ${contextValues.background} player character`;
 		subjectContext = `who is/has ${contextValues.appearance}`;
 	} else {
-		subject = actor.name;
+		subject = `${actor.name}`;
 		subjectContext = `that is/has ${contextValues.appearance}`;
 	}
 
