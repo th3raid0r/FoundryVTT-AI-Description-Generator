@@ -1,11 +1,11 @@
 export function getContextValues(actorType, actorData) {
-    const userMappings = JSON.parse(game.settings.get('ai-description-generator', 'contextMappings')) || {};
+    const userMappings = JSON.parse(game.settings.get('ai-description-generator', 'contextMappings'));
   
     const contextKeys = Object.keys(userMappings[actorType]);
     const contextValues = {};
   
     for (const key of contextKeys) {
-      const mapping = userMappings[actorType]?.[key] || defaultMappings[actorType][key];
+      const mapping = userMappings[actorType][key];
       let value = getProperty(actorData, mapping);
         
       // Handle class arrays
